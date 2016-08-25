@@ -1,10 +1,8 @@
 /// <summary>  
 /// 程序功能：1.实现读取bmp图像2.根据图像点的坐标输出该坐标下的rgb颜色值。
-/// 系统Ubuntu 15.10，编程语言C,最新整理时间 2016.6.24。  
+/// 系统Ubuntu 15.10，编程语言C,最新整理时间 2016.8.25。  
 /// 该程序是在实现纯高斯的C语言版本，遇到bmp图像的读取问题而来的  
-/// </summary>  
-/// <param name="cn">通道数，灰度图像cn=1,彩色图像cn=3</param>        
-/// <remarks> 3: 算法前后两行的依耐性很强，算法本身不适合于并行。</remarks>  
+/// </summary>       
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>

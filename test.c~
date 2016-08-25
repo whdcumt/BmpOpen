@@ -2,9 +2,7 @@
 /// 程序功能：1.实现读取bmp图像2.根据图像点的坐标输出该坐标下的rgb颜色值。
 /// 系统Ubuntu 15.10，编程语言C,最新整理时间 2016.6.24。  
 /// 该程序是在实现纯高斯的C语言版本，遇到bmp图像的读取问题而来的  
-/// </summary>  
-/// <param name="cn">通道数，灰度图像cn=1,彩色图像cn=3</param>        
-/// <remarks> 3: 算法前后两行的依耐性很强，算法本身不适合于并行。</remarks>  
+/// </summary>       
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -119,18 +117,24 @@ int ReadBmp(const char* szFileName)
 	return 0;
 }
 /// <summary>  
-/// 函数功能实现读取bmp图像
+/// 函数功能：根据图像点的坐标输出该坐标下的rgb颜色值。
 /// </summary>  
-/// <param name="szFileName">图像文件的路径</param>    
+/// <param name="x">图像中点横坐标</param>    
+/// <param name="y">图像中点纵坐标</param>    
+/// <param name="r">该坐标下点的r分量值</param>    
+/// <param name="g">该坐标下点的g分量值</param>    
+/// <param name="b">该坐标下点的b分量值</param>    
 int GetDIBColor(int X, int Y, BYTE *r, BYTE *g, BYTE *b)
 {
 	int dpixeladd;
 	BYTE *ptr;
+        //如果坐标值越界，直接返回
 	if (X < 0 || X >= bih.biWidth || Y < 0 || Y >= bih.biHeight)
 	{
 	   return 0;
 	}
 	dpixeladd = bih.biBitCount / 8;
+       //（x,y）像素点的存储地址
 	ptr = Buffer + X * dpixeladd + (bih.biHeight - 1 - Y) * LineByteWidth;
 	*b = *ptr;
 	*g = *(ptr + 1);
